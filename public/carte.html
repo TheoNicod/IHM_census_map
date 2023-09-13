@@ -5,29 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
     <script src="carte.js"></script>
+    <link href="carte.css" rel="stylesheet">
+    <link rel="stylesheet" href="filepond/filepond.css">
+    <link rel="stylesheet" href="filepond/filepond-plugin-image-preview.css">
 </head>
 <body>
-    <div>
-
-        <table>
-            <tr>
-                <td>Title</td>
-                <td><textarea name="title" id="title" cols="30" rows="1"></textarea></td>
-            </tr>
-            <tr>
-                <td>Type</td>
-                <td><select name="type" id="type">
-                        <option value="earthquake">Earthquake</option>
-                        <option value="fire">Fire</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Description</td>
-                <td><textarea name="desc" id="desc" cols="30" rows="5"></textarea></td>
-            </tr>
-        </table>
+    <div class="form-container">
+        <ul>
+            <li>
+                <label for="type"  class='form-label'>Type <abbr>*</abbr></label>
+                <select name="type" id="type" class="form-control">
+                    <option value="earthquake">Earthquake</option>
+                    <option value="fire">Fire</option>
+                </select>
+            </li>
+            <li>
+                <label for="desc" class='form-label'>Description <abbr>*</abbr></label>
+                <textarea name="desc" id="desc" cols="30" rows="5" class='form-control'></textarea>
+            </li>
+            <li>
+                <label for="image" class='form-label'>Image <abbr>*</abbr></label>
+                <input type='file' class='form-control filepond' id='screenshot' name='image' credits="false" />
+            </li>
+        </ul>
         <button onclick="addLocation()">Add</button>
     </div>
+
+    <script src="filepond/filepond.js"></script>
+    <script src="filepond/filepond-plugin-image-preview.js"></script>
+    <script>
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        const inputElement = document.querySelector('input[name="image"]');
+        const pond = FilePond.create(inputElement);
+
+        FilePond.setOptions({
+           server : {
+              process : '/store/upload',
+              revert : '/store/deleteImage',
+              headers : {
+                 'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+              }
+           },
+        })
+     </script>
+
 </body>
 </html>

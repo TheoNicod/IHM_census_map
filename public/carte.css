@@ -1,0 +1,87 @@
+/* Réinitialisation des marges et des rembourrages par défaut */
+body, html, ul, li, label, textarea, select, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style de base pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 20px;
+    width : 100%;
+    display : flex;
+}
+
+/* Style pour le conteneur du formulaire */
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width : 70%;
+    margin : auto;
+}
+
+/* Style pour les éléments de la liste */
+ul {
+    list-style: none;
+    width : 100%;
+}
+
+li {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width : 100%;
+}
+
+/* Style pour les labels */
+.form-label
+{
+  font-family: "Open Sans", sans-serif;
+  font-size: .875rem;
+  font-weight: 600;
+  color: #424144;
+  font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    margin-top : 5px;
+    background-color : white;
+  }
+
+
+/* Style pour le bouton Ajouter */
+button {
+    background-color: #006e93;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+
+/* Style pour le bouton Ajouter au survol */
+button:hover {
+    background-color: #0056b3;
+}
+
+textarea {
+    resize: none;
+}
+
+abbr {
+    border: 0;
+    color: red;
+    padding: 0 .3em 0 0;
+    text-decoration: none;
+  }
