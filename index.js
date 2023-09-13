@@ -17,6 +17,12 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/carte.html');
 });
 
+/**
+ * Récupération de la position des markers au lancement du serveur
+ */
+// demande à la base la pos de tous les markers
+var markers = [{ id: 1, long: 0.8787, lat: 0.7676 }];
+
 
 /**
  * Routes
@@ -30,3 +36,24 @@ app.put('/location', function(req, res) {
     console.log(req.body);
     // add_velo_to_list(req.params.id, req.body.cadre, req.body.options);
 });
+
+app.get('/location', function(req, res) { // Location des markers seulement (sans les infos "type" "url"...)
+    console.log("Reçu : GET /location");
+    res.setHeader('Content-type', 'application/json');
+
+
+    res.json(markers); // Envoi de la réponse au client
+})
+
+app.get('/location/:id', function(req, res) { // Location des markers seulement (sans les infos "type" "url"...)
+    console.log("Reçu : GET /location");
+    res.setHeader('Content-type', 'application/json');
+
+    // demande à la base les infos d'un marker selon 1 id
+    // on recup l'id avec req.params.id
+
+    res.json(markers); // Envoi de la réponse au client
+})
+
+
+

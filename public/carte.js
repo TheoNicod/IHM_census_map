@@ -14,3 +14,4 @@ function addLocation() {
 
     fetch('/location', {method: 'PUT', headers: {'Content-type': 'application/json'}, body: JSON.stringify(location)});
 }
+
