@@ -4,13 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <script src="carte.js"></script>
     <link href="carte.css" rel="stylesheet">
     <link rel="stylesheet" href="filepond/filepond.css">
     <link rel="stylesheet" href="filepond/filepond-plugin-image-preview.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
-    <div class="form-container">
+    <div class="flex full">
+        <div class="details">
+            <button>Add to my position</button>
+        </div>
+        <div id="map" class="map">
+            <div id="flou"></div>
+            <div id="opened-marker" class="form-container">
+                <div id="close" class="close" onclick="close(this)">X</div>
+                <p id="type-info"></p>
+                <div id="image-info"></div>
+                <p id="desc-info"></p>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <div id="form" class="form-container hide">
         <ul>
             <li>
                 <label for="type"  class='form-label'>Type <abbr>*</abbr></label>
@@ -20,17 +38,17 @@
                 </select>
             </li>
             <li>
-                <label for="desc" class='form-label'>Description <abbr>*</abbr></label>
+                <label for="desc" class='form-label'>Description</label>
                 <textarea name="desc" id="desc" cols="30" rows="5" class='form-control'></textarea>
             </li>
             <li>
-                <label for="image" class='form-label'>Image <abbr>*</abbr></label>
+                <label for="image" class='form-label'>Image</label>
                 <input type='file' class='form-control filepond' id='screenshot' name='image' credits="false" />
             </li>
         </ul>
         <button onclick="addLocation()">Add</button>
     </div>
-
+    <script src="carte.js"></script>
     <script src="filepond/filepond.js"></script>
     <script src="filepond/filepond-plugin-image-preview.js"></script>
     <script>
