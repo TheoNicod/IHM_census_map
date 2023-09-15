@@ -20,7 +20,7 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width : 50%;
-    height: 40%;
+    height: fit-content;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -92,14 +92,6 @@ abbr {
   }
 
 
-.hide {
-    display: none;
-}
-
-.flex {
-    display: flex;
-}
-
 .full {
     width: 100%;
     height: 100%;
@@ -116,18 +108,40 @@ abbr {
     position: relative;
 }
 
-#flou {
-    height: 100%;
-    width: 100%;
-    background-color: #000000;
-    z-index: 401;
-    position: relative;
-}
-
 .close {
     cursor: pointer;
     padding: 2px;
-    background-color: #ccc;
     width: fit-content;
     cursor: pointer;
+    margin-left: auto;
+}
+
+/* Informations déroulées */
+#opened-marker {
+
+}
+#type-info {
+    font-weight: 600;
+}
+
+#image-info {
+    border: 1px black solid;
+    height: 30px;
+}
+
+#desc-info {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* Div gauche détails (bouton add to my position, tri ...) */
+
+
+/* Classes utiles */
+.hide {
+    display: none;
+}
+
+.flex {
+    display: flex;
 }
