@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="map.css">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    
+    <div id="map-search-container">
+        <div id="map"></div>
+        <div id="search-container">
+            <input id="search" type="text" placeholder="Search for a location">
+            <button id="search-button" onclick="searchLocation()">Search</button>
+        </div>
+        <div id="advanced-container">
+            <button id="advanced-button" onclick="toggleAdvancedSearch()">Advanced</button>
+            <div id="advanced-search" style="display: none;">
+                <label for="advanced-search-select">Type:</label>
+                <select id="advanced-search-select">
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                </select>
+            </div>
+        </div>
+    </div>    
+    <script src="map.js"></script>
+
+</body>
+</html>

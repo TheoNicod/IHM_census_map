@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+#map {
+    position: absolute;
+    right: 0; /* Position in the lower right corner */
+    width: 80%; /* width */
+    height: 100%; /* height */
+}
+
+#map-control {
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
