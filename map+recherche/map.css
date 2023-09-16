@@ -16,6 +16,30 @@ body {
     height: 100%; /* height */
 }
 
+/* Style the title */
+#column-title {
+    font-size: 24px; /* Adjust font size as needed */
+    margin-top: 0px; /* Adjust margin as needed */
+    margin-left: 8%;
+}
+
+#search {
+    margin-left: 2%;
+}
+
+#advanced-button{
+    margin-top: 5px;
+    margin-left: 2%;
+    text-decoration: underline;
+    border: none;
+    background:none;
+}
+
+#advanced-search {
+    margin-top: 10px;
+    margin-left: 2%;
+}
+
 #map-control {
     position: absolute;
     bottom: 100px;
