@@ -5,7 +5,7 @@
 # Setup the database
 
 ```sql 
-CREATE DATABASE ihm;
+CREATE DATABASE IHM
 
 CREATE TABLE `point` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
