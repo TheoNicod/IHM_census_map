@@ -1,4 +1,3 @@
-<div align="center">
 # Installation
 
 - git clone the project
@@ -39,5 +38,3 @@ INSERT INTO `point` VALUES
 - npm i
 - node index.js
 - in your navigator type 127.0.0.1:8000
-
-</div>
