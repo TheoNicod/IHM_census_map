@@ -45,3 +45,18 @@ INSERT INTO `point` VALUES
 - npm i
 - node index.js
 - in your navigator type 127.0.0.1:8000
+
+![1](https://github.com/TheoNicod/IHM_census_map/assets/120946916/65a53fd5-9dcf-4584-bd45-720543701475)
+
+![2](https://github.com/TheoNicod/IHM_census_map/assets/120946916/f5339942-5d1b-44ba-acb7-f18650b0c7ab)
+
+
+![3](https://github.com/TheoNicod/IHM_census_map/assets/120946916/0137b939-95f0-4b66-a0cd-1d68d8562810)
+
+
+![4](https://github.com/TheoNicod/IHM_census_map/assets/120946916/5dc4e568-aba3-4b98-8423-451b636d77f3)
+
+![5](https://github.com/TheoNicod/IHM_census_map/assets/120946916/ce859d46-12ef-4a1a-b2e2-c926478a9013)
+
+
+
