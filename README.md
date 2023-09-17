@@ -4,9 +4,11 @@
 
 # Setup the database
 
-```sql CREATE DATABASE ihm; ```
+```sql 
+CREATE DATABASE ihm; ```
 
-```sql CREATE TABLE `point` (
+```sql
+CREATE TABLE `point` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `longitude` decimal(10,6) NOT NULL,
   `latitude` decimal(10,6) NOT NULL,
@@ -16,7 +18,7 @@
   `ville` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;  ```
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;```
 
 ```sql 
 INSERT INTO `point` VALUES
