@@ -7,65 +7,108 @@
     <link href="carte.css" rel="stylesheet">
     <link rel="stylesheet" href="filepond/filepond.css">
     <link rel="stylesheet" href="filepond/filepond-plugin-image-preview.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+    <script src="filepond/sweetalert2.js"></script> 
+    <link href="bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div class="flex full">
-        <div class="details">
-            <button id="add-my-position">Add to my position</button>
-        </div>
-        <div id="map" class="map"></div>
-        <div id="opened-marker" class="form-container hide">
-            <div class="close">X</div>
-            <p id="type-info"></p>
-            <div id="image-info"></div>
-            <p>Description :</p>
-            <p id="desc-info"></p>
-        </div>
+    <div class="header-bar">
+        <div class="search-container"> 
+               <div class="forms">
+                  <input type='text' name='search' class = 'search' id='search' placeholder='Search for a location'> 
+                  <button class="search-btn" id="search-button"><i class="bi bi-search"></i></button>
+               </div>
+         </div>
     </div>
 
-    <form id="form" class="form-container hide">
-        <div class="close">X</div>
+    <form class="form-container activeCart" enctype="multipart/form-data" action="/upload" method="POST">
         <ul>
             <li>
-                <label for="type"  class='form-label'>Type <abbr>*</abbr></label>
+                <input type="text" id="latitude" name="latitude" class="form-control" hidden>
+            </li>
+            <li>
+                <input type="text" id="longitude" name="longitude" class="form-control" hidden>
+            </li>
+            <li>
+                <label for="longitude" class='form-label'>Ville:</label>
+                <input type="text" id="cityInput" name="ville" class="form-control">
+            </li>
+            <li>
+                <label for="type" class='form-label'>Type <abbr>*</abbr></label>
                 <select name="type" id="type" class="form-control">
-                    <option value="earthquake">Earthquake</option>
-                    <option value="fire">Fire</option>
+                        <option value="Aucun">Aucun</option>
+                        <option value="Inondations">Inondations</option>
+                        <option value="Feux">Feux</option>
+                        <option value="Séismes">Séismes</option>
+                        <option value="Tempêtes">Tempêtes</option>
+                        <option value="Eruption volcanique">Eruption volcanique</option>
+                        <option value="Tsunami">Tsunami</option>
+                        <option value="Tempêtes">Tempêtes</option>
                 </select>
             </li>
             <li>
-                <label for="desc" class='form-label'>Description</label>
+                <label for="desc" class='form-label'>Description <abbr>*</abbr></label>
                 <textarea name="desc" id="desc" cols="30" rows="5" class='form-control'></textarea>
             </li>
             <li>
-                <label for="image" class='form-label'>Image</label>
-                <input type='file' class='form-control filepond' id='screenshot' name='image' credits="false" />
+                <label for="image" class='form-label'>Image <abbr>*</abbr></label>
+                <input type='file' class='form-control' id='screenshot' name='image' />
             </li>
         </ul>
-        <button id="submit-form" type="submit">Add</button>
+        <div class ="buttons">
+            <button type="submit">Add</button>
+            <div class="cancel" onclick="viewMap()">Cancel</div>
+        </div>
     </form>
-    <script src="carte.js"></script>
-    <script src="filepond/filepond.js"></script>
-    <script src="filepond/filepond-plugin-image-preview.js"></script>
+   
+
+
+    <div class="form-container2 title">
+        <div id="maCarte"></div> 
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <script src="js/map.js"></script>
+    <script src="js/geolocaliasation.js"> </script>
+
     <script>
+        // Récupérez le paramètre "success" dans l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const successParam = urlParams.get('success');
+
+        // Vérifiez si le paramètre "success" est défini à true
+        if (successParam === 'true') {
+            Swal.fire({
+            icon: 'success',
+            title: 'Opération réussie!',
+            text: 'Les données ont été ajoutées avec succès.',
+        }).then((result) => {
+            // Redirigez l'utilisateur vers '/' après la fermeture de l'alerte
+            if (result.isConfirmed) {
+                window.location.href = '/';
+            }
+        });
+        }
+    </script>
+
+<!-- FILEPOND       <script src="filepond/filepond.js"></script>
+        <script src="filepond/filepond-plugin-image-preview.js"></script>
+        <script>
         FilePond.registerPlugin(FilePondPluginImagePreview);
-        const inputElement = document.querySelector('input[name="image"]');
+        const inputElement = document.querySelector('input[name="image2"]');
         const pond = FilePond.create(inputElement);
 
         FilePond.setOptions({
-           server : {
-              process : '/store/upload',
-              revert : '/store/deleteImage',
-              headers : {
-                 'X-CSRF-TOKEN' : '{{ csrf_token() }}'
-              }
-           },
+        server : '/upload2',
         })
-     </script>
+        </script>-->
 
 </body>
 </html>
