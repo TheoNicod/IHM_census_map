@@ -62,7 +62,6 @@ app.put('/location', function(req, res) {
     res.json(req.body);
 
     console.log(req.body);
-    // add_velo_to_list(req.params.id, req.body.cadre, req.body.options);
 });
 
 
@@ -83,9 +82,13 @@ app.get('/getPoints', (req, res) => {
 app.post("/upload", upload.single('image'), (req, res) => {
 
   const { latitude, longitude, type, desc, ville } = req.body;
-  const name = req.file.filename;
-  const imgPath = "Images/" + name
-
+  
+  let imgPath = "";
+  if(req.file) {
+    const name = req.file.filename;
+    imgPath = "Images/" + name
+  }
+  
   //Effectuez l'insertion dans la base de données
   db.query('INSERT INTO point (longitude, latitude, image,  date, type, ville, description) VALUES (?, ?, ?, NOW(), ?, ?, ?)', [longitude, latitude, imgPath, type, ville, desc], (err, results) => {
       if (err) {
