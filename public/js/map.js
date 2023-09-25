@@ -1,4 +1,4 @@
-var tableauMarqueurs = [];
+let tableauMarqueurs = [];
         
     
 // Exécutez une requête HTTP vers votre API
@@ -26,7 +26,7 @@ fetch('/getPoints')
     //On initialise la carte
     //var carte = L.map('maCarte').setView([31.630000, -8.008889], 13);
 
-    var carte = L.map('maCarte', {
+    let carte = L.map('maCarte', {
           worldCopyJump : true
     }); // Initialize the map without a center or zoom level
 
@@ -100,7 +100,7 @@ fetch('/getPoints')
       alert("Geolocation is not available in this browser.");
     }
 
-    var marqueurs = L.markerClusterGroup(); 
+    let marqueurs = L.markerClusterGroup(); 
 
     //On parcourt les différentes villes
     for (let ville of villes) {
@@ -112,8 +112,8 @@ fetch('/getPoints')
         tableauMarqueurs.push(marqueur);
     }
 
-    //On regroupe les marqueurs dans un tableau leaflet
-    var groupe = new L.featureGroup(tableauMarqueurs);
+    //On regroupe les marqueurs dans un tableau lea let
+    let groupe = new L.featureGroup(tableauMarqueurs);
 
     //On adapte le zoom au groupe
     carte.fitBounds(groupe.getBounds());
@@ -136,7 +136,7 @@ fetch('/getPoints')
           .then(response => response.json())
           .then(data => {
             if (data.address && data.address.city) {
-              var cityName = data.address.city;
+              let cityName = data.address.city;
               cityInput.value = cityName;
               console.log('Nom de la ville:', cityName);
             } else {
@@ -152,10 +152,10 @@ fetch('/getPoints')
         document.querySelector('.header-bar').classList.add("activeCart");
     });
 
-    var searchButton = document.getElementById('search-button');
+    let searchButton = document.getElementById('search-button');
     // Ajoutez un gestionnaire d'événements "click" au bouton
     searchButton.addEventListener('click', function() {
-      var query = document.getElementById('search').value;
+      let query = document.getElementById('search').value;
 
       // Use Nominatim API to geocode the query
       fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
