@@ -23,7 +23,36 @@
                   <input type='text' name='search' class = 'search' id='search' placeholder='Search for a location'> 
                   <button class="search-btn" id="search-button"><i class="bi bi-search"></i></button>
                </div>
+               <button class="filter-button" id="filter-button"><i class="bi bi-caret-down-fill"></i> Filters</button>
          </div>
+         
+
+         <div class="filter-container" id="filter-container">
+            <div style="padding: 5px;">
+                <label for="startDate">Start date :</label>
+                <input type="date" id="startDate" name="startDate"><br>
+            </div>
+            
+            <div style="padding: 5px;">
+                <label for="endDate">End date :</label>
+                <input type="date" id="endDate" name="endDate"><br>
+            </div>
+    
+            <div style="padding: 5px;">
+                <label for="disasterType">Type :</label>
+                <select name="disasterType" id="disasterType">
+                    <option value="Tous">All</option>
+                    <option value="Inondations">Flooding</option>
+                    <option value="Incendies">Fires</option>
+                    <option value="Séismes">Earthquakes</option>
+                    <option value="Tempêtes">Storms</option>
+                    <option value="Eruption volcanique">Volcanic eruption</option>
+                    <option value="Tsunami">Tsunami</option>
+                </select>
+            </div>
+        
+            <button id="applyFilters" class="apply-filter-button">Apply filters</button>
+        </div>
     </div>
 
     <form class="form-container activeCart" enctype="multipart/form-data" action="/upload" method="POST">
@@ -41,14 +70,13 @@
             <li>
                 <label for="type" class='form-label'>Type <abbr>*</abbr></label>
                 <select name="type" id="type" class="form-control">
-                        <option value="Aucun">Aucun</option>
-                        <option value="Inondations">Inondations</option>
-                        <option value="Feux">Feux</option>
-                        <option value="Séismes">Séismes</option>
-                        <option value="Tempêtes">Tempêtes</option>
-                        <option value="Eruption volcanique">Eruption volcanique</option>
+                        <option value="Tous">None</option>
+                        <option value="Inondations">Flooding</option>
+                        <option value="Incendies">Fires</option>
+                        <option value="Séismes">Earthquakes</option>
+                        <option value="Tempêtes">Storms</option>
+                        <option value="Eruption volcanique">Volcanic eruption</option>
                         <option value="Tsunami">Tsunami</option>
-                        <option value="Tempêtes">Tempêtes</option>
                 </select>
             </li>
             <li>

@@ -30,6 +30,56 @@ fetch('/getPoints')
           worldCopyJump : true
     }); // Initialize the map without a center or zoom level
 
+    // Filtres
+    const filterButton = document.getElementById('filter-button');
+    const filterContainer = document.getElementById('filter-container');
+    let startDateFilter = null;
+    let endDateFilter = null;
+    let disasterTypeFilter = null;
+
+    function updateFilters() {
+      startDateFilter = document.getElementById('startDate').value;
+      endDateFilter = document.getElementById('endDate').value;
+      disasterTypeFilter = document.getElementById('disasterType').value;
+    
+      generateMarkers(data);
+    }
+
+    filterButton.addEventListener('click', function() {
+        filterContainer.classList.toggle('open');
+    });
+
+    document.getElementById('applyFilters').addEventListener('click', function() {
+      updateFilters();
+    });
+
+    function generateMarkers(data) {
+      // On supprime tous les marqueurs de la carte
+      marqueurs.clearLayers();
+      carte.removeLayer(marqueurs);
+    
+      const filteredData = data.filter(ville => {
+        const markerDate = new Date(ville.date);
+        const markerType = ville.type;
+    
+        // Vérification des filtres
+        const dateInRange = (!startDateFilter || markerDate >= new Date(startDateFilter)) && (!endDateFilter || markerDate <= new Date(endDateFilter));
+        const typeMatches = disasterTypeFilter === 'Tous' || markerType === disasterTypeFilter;
+    
+        return dateInRange && typeMatches;
+      });
+    
+      // Création des nouveaux marqueurs Leaflet avec les données filtrées
+      const newMarkers = filteredData.map(ville => {
+        const marker = L.marker([ville.latitude, ville.longitude]);
+        marker.bindPopup("<p><strong>" + ville.ville + " </strong>(" + ville.type  + " on "+ ville.date.slice(0, -14) +")</p><p><em>" + ville.description + "</em></p><img src='" + ville.image +"'  alt='' class='cart-img'>");
+        return marker;
+      });
+    
+      marqueurs.addLayers(newMarkers);
+      carte.addLayer(marqueurs);
+    }
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
     }).addTo(carte);
@@ -55,7 +105,7 @@ fetch('/getPoints')
     //On parcourt les différentes villes
     for (let ville of villes) {
         var marqueur = L.marker([ville.latitude, ville.longitude]);
-        marqueur.bindPopup("<p><strong>" + ville.ville + " </strong>(" + ville.type  + ")</p><p><em>" + ville.description + "</em></p><img src='" + ville.image +"'  alt='' class='cart-img'>");
+        marqueur.bindPopup("<p><strong>" + ville.ville + " </strong>(" + ville.type  + " on "+ ville.date.slice(0, -14) +")</p><p><em>" + ville.description + "</em></p><img src='" + ville.image +"'  alt='' class='cart-img'>");
         marqueurs.addLayer(marqueur); //On ajoute le marqueur au groupe
 
         //On ajoute le marqueur au tableau pour gérer le zoom par défaut
