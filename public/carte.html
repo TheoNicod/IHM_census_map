@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>Map Disasters</title>
     <link href="carte.css" rel="stylesheet">
     <link rel="stylesheet" href="filepond/filepond.css">
     <link rel="stylesheet" href="filepond/filepond-plugin-image-preview.css">
@@ -40,7 +40,7 @@
             </li>
             <li>
                 <label for="type" class='form-label'>Type <abbr>*</abbr></label>
-                <select name="type" id="type" class="form-control">
+                <select name="type" id="type" class="form-control required">
                         <option value="Aucun">Aucun</option>
                         <option value="Inondations">Inondations</option>
                         <option value="Feux">Feux</option>
@@ -48,12 +48,11 @@
                         <option value="Tempêtes">Tempêtes</option>
                         <option value="Eruption volcanique">Eruption volcanique</option>
                         <option value="Tsunami">Tsunami</option>
-                        <option value="Tempêtes">Tempêtes</option>
                 </select>
             </li>
             <li>
                 <label for="desc" class='form-label'>Description <abbr>*</abbr></label>
-                <textarea name="desc" id="desc" cols="30" rows="5" class='form-control'></textarea>
+                <textarea name="desc" id="desc" cols="30" rows="5" class='form-control' required></textarea>
             </li>
             <li>
                 <label for="image" class='form-label'>Image <abbr>*</abbr></label>
@@ -89,12 +88,24 @@
             icon: 'success',
             title: 'Opération réussie!',
             text: 'Les données ont été ajoutées avec succès.',
-        }).then((result) => {
-            // Redirigez l'utilisateur vers '/' après la fermeture de l'alerte
-            if (result.isConfirmed) {
-                window.location.href = '/';
-            }
-        });
+            }).then((result) => {
+                // Redirigez l'utilisateur vers '/' après la fermeture de l'alerte
+                if (result.isConfirmed) {
+                    window.location.href = '/';
+                }
+            });
+        }
+        if (successParam === 'undesirable') {
+            Swal.fire({
+            icon: 'warning',
+            title: 'Opération échouée',
+            text: 'Le contenu est indésirable.',
+            }).then((result) => {
+                // Redirigez l'utilisateur vers '/' après la fermeture de l'alerte
+                if (result.isConfirmed) {
+                    window.location.href = '/';
+                }
+            });
         }
     </script>
 
