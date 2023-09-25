@@ -20,15 +20,15 @@ CREATE TABLE `point` (
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `point` VALUES
-(1,-8.008889,31.630000,'Images/incendiee.png','2023-09-16','Incendie','Marrakech',
+(1,-8.008889,31.630000,'Images/incendiee.png','2023-09-16','Incendies','Marrakech',
 'Incendie au centre ville, un batiment a pris feux'),
-(2,-9.598107,30.427755,'Images/seisme.jpg','2023-09-16','Séisme','Agadir',
+(2,-9.598107,30.427755,'Images/seisme.jpg','2023-09-16','Séismes','Agadir',
 'Un séisme dévastateur qui a provoqué des éboulements'),
-(3,-7.480000,31.260000,'Images/seisme.jpg','2023-09-16','Séisme','Anza',
+(3,-7.480000,31.260000,'Images/seisme.jpg','2023-09-16','Séismes','Anza',
 'Un immobles s\'effondrea cause d\'un séisme'),
-(4,-5.833954,35.759465,'Images/innondation.jpg','2023-09-16','Innondation','Tanger',
+(4,-5.833954,35.759465,'Images/innondation.jpg','2023-09-16','Inondations','Tanger',
 'Un barrage a cédé innondant la ville'),
-(5,-6.849813,33.971590,'Images/incendie.jpg','2023-09-16','Incendie','Rabat',
+(5,-6.849813,33.971590,'Images/incendie.jpg','2023-09-16','Incendies','Rabat',
 'Le feu a ravagé le batiment'),
 (65,7.752571,48.583746,'Images/1694874440445--seisme.jpg','2023-09-16','Séismes','Strasbourg',
 'Un séisme dévastateur'),
