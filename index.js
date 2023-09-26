@@ -7,7 +7,7 @@ const FormData = require('form-data');
 const fs = require('fs');
 
 // Variables environnement
-dotenv.config({ path: '.env.local' });
+dotenv.config();
 
 // Express
 const app = express();
