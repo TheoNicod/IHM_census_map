@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Dashboard</h1>
+    </div>
+    <div class="filters">
+        <div class="filter">
+            <label for="startDate">Start Date :</label>
+            <input type="date" id="filter-startDate" name="startDate">
+        </div>
+
+        <div class="filter">
+            <label for="endDate">End Date :</label>
+            <input type="date" id="filter-endDate" name="endDate">
+        </div>
+
+        <div class="filter">
+            <label for="disasterType">Disaster type :</label>
+            <select id="filter-type" name="disasterType">
+                <option value="Tous">None</option>
+                        <option value="Inondations">Flooding</option>
+                        <option value="Incendies">Fires</option>
+                        <option value="Séismes">Earthquakes</option>
+                        <option value="Tempêtes">Storms</option>
+                        <option value="Eruption volcanique">Volcanic eruption</option>
+                        <option value="Tsunami">Tsunami</option>
+            </select>
+        </div>
+
+        <div class="filter">
+            <label for="city">City :</label>
+            <input type="text" id="filter-ville" name="city" placeholder="Search for a city">
+        </div>
+    </div>
+    
+    <h2 class="num-items"></h2>
+
+    <div class="marker-list">
+        <!-- Liste des marqueurs -->
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

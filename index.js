@@ -59,34 +59,45 @@ app.get('/', function(req, res) {
 
 // Créez une route pour exécuter la requête SELECT
 app.get('/getPoints', (req, res) => {
-    db.query('SELECT * FROM point', (err, results) => {
-      if (err) {
-        console.error('Erreur lors de l\'exécution de la requête SELECT :', err);
-        res.status(500).json({ error: 'Erreur lors de la requête SELECT' });
-        return;
-      }
-      res.json(results);
-    });
+  db.query('SELECT * FROM point', (err, results) => {
+    if (err) {
+      console.error('Erreur lors de l\'exécution de la requête SELECT :', err);
+      res.status(500).json({ error: 'Erreur lors de la requête SELECT' });
+      return;
+    }
+    res.json(results);
   });
+});
 
+app.post("/upload", upload.none(), (req, res) => {
+  const { latitude, longitude, type,  ville } = req.body;
+  //const name = req.file.filename;
+  //const imgPath = "Images/" + name
 
-
-  app.post("/upload", upload.none(), (req, res) => {
-
-    const { latitude, longitude, type,  ville } = req.body;
-    //const name = req.file.filename;
-    //const imgPath = "Images/" + name
-  
-    //Effectuez l'insertion dans la base de données
-    db.query('INSERT INTO point (longitude, latitude, date, type, ville) VALUES (?, ?, NOW(), ?, ?)', 
-    [longitude, latitude, type, ville], (err, results) => {
-        if (err) {
-            console.error('Erreur lors de l\'insertion en base de données :', err);
-            //res.status(500).json({ error: 'Erreur lors de l\'enregistrement en base de données.' });
-            res.status(500).json({ error: err.message });
-  
-            return;
-        }
-        res.redirect('/?success=true');
-    });
+  //Effectuez l'insertion dans la base de données
+  db.query('INSERT INTO point (longitude, latitude, date, type, ville) VALUES (?, ?, NOW(), ?, ?)', 
+  [longitude, latitude, type, ville], (err, results) => {
+    if (err) {
+      console.error('Erreur lors de l\'insertion en base de données :', err);
+      //res.status(500).json({ error: 'Erreur lors de l\'enregistrement en base de données.' });
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.redirect('/?success=true');
   });
+});
+
+// Ajoutez cette route pour gérer la suppression des points
+app.post('/deletePoint', (req, res) => {
+  const { id } = req.body;
+
+  db.query('DELETE FROM point WHERE id = ?', [id], (err, results) => {
+    if (err) {
+      console.error('Erreur lors de la suppression du point :', err);
+      res.status(500).json({ success: false, error: 'Erreur lors de la suppression du point' });
+      return;
+    }
+
+    res.json({ success: true });
+  });
+});
