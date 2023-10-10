@@ -72,7 +72,7 @@ fetch('/getPoints')
       // Création des nouveaux marqueurs Leaflet avec les données filtrées
       const newMarkers = filteredData.map(ville => {
         const marker = L.marker([ville.latitude, ville.longitude]);
-        marker.bindPopup("<p><strong>" + ville.ville + " </strong>(" + ville.type  + " on "+ ville.date.slice(0, -14) +")</p><p><em>" + ville.description + "</em></p><img src='" + ville.image +"'  alt='' class='cart-img'>");
+        marker.bindPopup("<p><strong>" + ville.ville + " </strong>(" + ville.type  + " on "+ ville.date.slice(0, -14) +")</p><p><em>" + ville.description + "</em></p>");
         return marker;
       });
     
