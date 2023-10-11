@@ -64,7 +64,7 @@ fetch('/getPoints')
     
         // Vérification des filtres
         const dateInRange = (!startDateFilter || markerDate >= new Date(startDateFilter)) && (!endDateFilter || markerDate <= new Date(endDateFilter));
-        const typeMatches = disasterTypeFilter === 'Tous' || markerType === disasterTypeFilter;
+        const typeMatches = disasterTypeFilter === 'All' || markerType === disasterTypeFilter;
     
         return dateInRange && typeMatches;
       });
@@ -189,24 +189,24 @@ fetch('/getPoints')
     document.getElementById("type").addEventListener("change", () => {
       let valueTypeSelect = document.getElementById("type").value;
       
-      if(valueTypeSelect == "Inondations") {
-        displayDescSelect("inondation");
+      if(valueTypeSelect == "Flooding") {
+        displayDescSelect("flooding");
         return;
       }
-      if(valueTypeSelect == "Incendies") {
-        displayDescSelect("incendie");
+      if(valueTypeSelect == "Fires") {
+        displayDescSelect("fires");
         return;
       }
-      if(valueTypeSelect == "Séismes") {
-        displayDescSelect("seisme");
+      if(valueTypeSelect == "Earthquakes") {
+        displayDescSelect("earthquakes");
         return;
       }
-      if(valueTypeSelect == "Tempêtes") {
-        displayDescSelect("tempete");
+      if(valueTypeSelect == "Storms") {
+        displayDescSelect("storms");
         return;
       }
-      if(valueTypeSelect == "Eruption volcanique") {
-        displayDescSelect("volcanique");
+      if(valueTypeSelect == "Volcanic eruption") {
+        displayDescSelect("volcanic_eruption");
         return;
       }
       if(valueTypeSelect == "Tsunami") {
