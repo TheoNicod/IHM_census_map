@@ -147,7 +147,7 @@ fetch('/getPoints')
             console.error('Erreur:', error);
           });
 
-        document.querySelector('.form-container').classList.remove("activeCart");
+        document.querySelector('#formDisaster').classList.remove("activeCart");
         document.querySelector('.title').classList.add("activeCart");
         document.querySelector('.header-bar').classList.add("activeCart");
     });
@@ -231,6 +231,53 @@ fetch('/getPoints')
     }
 
   });
+
+
+  document.getElementById("urgenceButton").addEventListener("click", () => {
+      document.querySelector('#formUrgence').classList.remove("activeCart");
+      document.querySelector('.title').classList.add("activeCart");
+      document.querySelector('.header-bar').classList.add("activeCart");
+  });
+
+  // document.getElementById("submitUrgence").addEventListener("click", () => {
+  //   let typeUrgence = document.getElementById("typeUrgence").value;
+  //   console.log("typeUrgence = ", typeUrgence);
+  //   await fetch('/uploadUrgence', {
+  //     method: 'GET',
+  //     headers: {
+  //         'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ typeUrgence: typeUrgence })
+  //   })
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     console.log("if data");
+  //     if (data.success) {
+  //         console.log(`Point ${typeUrgence} added successfully`);
+  //         // location.reload();
+  //     } else {
+  //         console.error(`Error add point`);
+  //     }
+  //   });
+  // })
+
+
+
+/* Gestion de la boite de dialogue pour l'utilisation des données */
+const modal = document.getElementById("myModal");
+const closeModalButton = document.getElementById("closeModal");
+
+if(localStorage.getItem("accept") != "true") {
+  modal.style.display = "block";
+}else{
+  modal.style.display = "none";
+}
+
+closeModalButton.addEventListener("click", () => {
+  modal.style.display = "none";
+  localStorage.setItem("accept", "true");
+});
+
   
   
 

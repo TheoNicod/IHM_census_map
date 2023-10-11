@@ -218,3 +218,40 @@ abbr {
     margin: 5px;
     background-color: dodgerblue;
 }
+
+/* Bouton Urgence */
+.urgenceButton {
+    margin-left: auto;
+}
+
+/* Boîte de dialogue modale Utilisation des données */
+.modal {
+    display: none;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    color: black;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#closeModal {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#closeModal:hover {
+    background-color: #0056b3;
+}

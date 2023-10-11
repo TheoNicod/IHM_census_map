@@ -2,9 +2,6 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mysql = require('mysql');
 const multer = require('multer');
-const axios = require('axios');
-const FormData = require('form-data');
-const fs = require('fs');
 
 // Variables environnement
 dotenv.config({ path: '.env.local' });
@@ -87,8 +84,16 @@ app.post("/upload", upload.none(), (req, res) => {
   });
 });
 
+app.post("/uploadUrgence", (req, res) => {
+  const { typeUrgence } = req.body;
+  console.log("urg ", req.body);
+  console.log("urg ", typeUrgence);
+  res.redirect('/?success=true');
+})
+
 // Ajoutez cette route pour gérer la suppression des points
 app.post('/deletePoint', (req, res) => {
+  console.log("delete ",req.body);
   const { id } = req.body;
 
   db.query('DELETE FROM point WHERE id = ?', [id], (err, results) => {
