@@ -16,8 +16,8 @@
 /* Styles pour la liste des marqueurs */
 .marker-list {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-around;
+    margin: 20px 0;
 }
 
 .marker-item {
