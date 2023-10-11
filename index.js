@@ -70,13 +70,13 @@ app.get('/getPoints', (req, res) => {
 });
 
 app.post("/upload", upload.none(), (req, res) => {
-  const { latitude, longitude, type,  ville } = req.body;
+  const { latitude, longitude, type, desc, ville } = req.body;
   //const name = req.file.filename;
   //const imgPath = "Images/" + name
 
   //Effectuez l'insertion dans la base de données
-  db.query('INSERT INTO point (longitude, latitude, date, type, ville) VALUES (?, ?, NOW(), ?, ?)', 
-  [longitude, latitude, type, ville], (err, results) => {
+  db.query('INSERT INTO point (longitude, latitude, date, type, ville, description) VALUES (?, ?, NOW(), ?, ?, ?)', 
+  [longitude, latitude, type, ville, desc], (err, results) => {
     if (err) {
       console.error('Erreur lors de l\'insertion en base de données :', err);
       //res.status(500).json({ error: 'Erreur lors de l\'enregistrement en base de données.' });

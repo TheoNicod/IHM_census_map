@@ -105,7 +105,7 @@ fetch('/getPoints')
     //On parcourt les différentes villes
     for (let ville of villes) {
         var marqueur = L.marker([ville.latitude, ville.longitude]);
-        marqueur.bindPopup("<p><strong>" + ville.ville + " </strong>(" + ville.type  + " on "+ ville.date.slice(0, -14) +")</p><p><em>" + ville.description + "</em></p><img src='" + ville.image +"'  alt='' class='cart-img'>");
+        marqueur.bindPopup("<p><strong>" + ville.ville + " </strong>(" + ville.type  + " on "+ ville.date.slice(0, -14) +")</p><p><em>" + ville.description + "</em></p>");
         marqueurs.addLayer(marqueur); //On ajoute le marqueur au groupe
 
         //On ajoute le marqueur au tableau pour gérer le zoom par défaut
@@ -179,4 +179,61 @@ fetch('/getPoints')
   .catch(error => {
     console.error('Erreur lors de la requête :', error);
   });
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+
+    // Gestion dynamique des selects
+    hideDescSelect();
+    document.getElementById("type").addEventListener("change", () => {
+      let valueTypeSelect = document.getElementById("type").value;
+      
+      if(valueTypeSelect == "Inondations") {
+        displayDescSelect("inondation");
+        return;
+      }
+      if(valueTypeSelect == "Incendies") {
+        displayDescSelect("incendie");
+        return;
+      }
+      if(valueTypeSelect == "Séismes") {
+        displayDescSelect("seisme");
+        return;
+      }
+      if(valueTypeSelect == "Tempêtes") {
+        displayDescSelect("tempete");
+        return;
+      }
+      if(valueTypeSelect == "Eruption volcanique") {
+        displayDescSelect("volcanique");
+        return;
+      }
+      if(valueTypeSelect == "Tsunami") {
+        displayDescSelect("tsunami");
+      }
+    });
+
+    function hideDescSelect() {
+      let descSelect = document.getElementById("desc");
+      descSelect.value = "";
+      descSelect.querySelectorAll("option").forEach(option => {
+        option.style.display = "none";
+      });
+    }
+  
+    function displayDescSelect(type) {
+      hideDescSelect();
+      let descSelect = document.getElementById("desc");
+      descSelect.querySelectorAll(`.${type}`).forEach(option => {
+        option.style.display = "block";
+      })
+    }
+
+  });
+  
+  
+
+
+  
 
