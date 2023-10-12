@@ -22,7 +22,7 @@
         <!-- Boîte de dialogue modale utilisation des données -->
         <div class="modal" id="myModal">
             <div class="modal-content">
-                <p>En continuant sur ce site, l'utilisateur accepte <a target="_blank" href="./charte.html">les règles et conditions d'utilisation</a> de la plateforme."</p>
+                <p>"By continuing on this site, the user agrees to <a target="_blank" href="./charte.html">the platform's rules and terms of use.</a>"</p>
                 <button id="closeModal">OK</button>
             </div>
         </div>
@@ -33,7 +33,6 @@
                   <button class="search-btn" id="search-button"><i class="bi bi-search"></i></button>
                </div>
                <button class="filter-button" id="filter-button"><i class="bi bi-caret-down-fill"></i> Filters</button>
-               <a href="dashboard.html">Dashboard</a>
          </div>
          
 
@@ -63,7 +62,8 @@
         
             <button id="applyFilters" class="apply-filter-button">Apply filters</button>
         </div>
-        <button id="urgenceButton" class="urgenceButton">Urgence</button>
+        <a href="dashboard.html">Dashboard</a>
+        <button id="urgenceButton" class="urgenceButton" style="display: none;">Urgence</button>
     </div>
 
     <form id="formDisaster" class="form-container activeCart" enctype="multipart/form-data" action="/upload" method="POST">
@@ -164,8 +164,8 @@
         if (successParam === 'true') {
             Swal.fire({
             icon: 'success',
-            title: 'Opération réussie!',
-            text: 'Les données ont été ajoutées avec succès.',
+            title: 'Successful operation!',
+            text: 'The data has been added successfully.',
             }).then((result) => {
                 // Redirigez l'utilisateur vers '/' après la fermeture de l'alerte
                 if (result.isConfirmed) {
@@ -176,8 +176,8 @@
         if (successParam === 'undesirable') {
             Swal.fire({
             icon: 'warning',
-            title: 'Opération échouée',
-            text: 'Le contenu est indésirable.',
+            title: 'Operation failed!',
+            text: 'The content is unwanted.',
             }).then((result) => {
                 // Redirigez l'utilisateur vers '/' après la fermeture de l'alerte
                 if (result.isConfirmed) {
