@@ -34,15 +34,22 @@ INSERT INTO `point` VALUES
 'Un séisme dévastateur'),
 (66,2.324638,48.863461,'Images/1694874468930--innondation.jpg','2023-09-16','Inondations','Paris',
 'Un barrage a cédé');
+
+CREATE TABLE urgence (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    latitude DECIMAL(10, 6) NOT NULL,
+    longitude DECIMAL(10, 6) NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    date DATETIME NOT NULL
+);
 ```
 
 - Edit the .env file and enter your database password.
 
-# Setup the projetc
+# Setup the project
 
 - cd NodeJS_ImageMapExplorer
 - npm install
-- npm i
 - node index.js
 - in your navigator type 127.0.0.1:8000
 
