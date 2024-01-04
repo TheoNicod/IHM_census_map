@@ -2,6 +2,9 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mysql = require('mysql');
 const multer = require('multer');
+const axios = require('axios');
+const FormData = require('form-data');
+const fs = require('fs');
 
 // Variables environnement
 dotenv.config({ path: '.env.local' });
@@ -111,7 +114,7 @@ app.post("/uploadUrgence",upload.none(), (req, res) => {
 
 // Ajoutez cette route pour gérer la suppression des points
 app.post('/deletePoint', (req, res) => {
-  console.log("delete ",req.body);
+console.log("delete ",req.body);
   const { id } = req.body;
 
   db.query('DELETE FROM point WHERE id = ?', [id], (err, results) => {
@@ -124,3 +127,45 @@ app.post('/deletePoint', (req, res) => {
     res.json({ success: true });
   });
 });
+
+// const bcrypt = require('bcrypt');
+// const path = require('path');
+// app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'public'));
+
+// app.post('/login', upload.none(), (req, res) => {
+//   const { username, password } = req.body;
+
+//   db.query('SELECT * FROM utilisateur WHERE nom_utilisateur = ?', [username], (err, results) => {
+//     if (err) {
+//       console.error('Erreur lors de la recherche de l\'utilisateur :', err);
+//       res.status(500).json({ success: false, error: 'Erreur lors de la recherche de l\'utilisateur' });
+//       return;
+//     }
+
+//     // Vérifiez si un utilisateur avec ce nom d'utilisateur a été trouvé
+//     if (results.length === 0) {
+//       const errorMessage = 'Nom d\'utilisateur incorrect';
+//       return res.render('login', { errorMessage });
+//     }
+
+//     // Récupérez le mot de passe haché de l'utilisateur trouvé
+//     const hashedPassword = results[0].mdp;
+
+//     // Comparez le mot de passe saisi avec le mot de passe haché de la base de données
+//     bcrypt.compare(password, hashedPassword, (bcryptErr, bcryptResult) => {
+//       if (bcryptErr) {
+//         console.error('Erreur lors de la comparaison des mots de passe :', bcryptErr);
+//         res.status(500).json({ success: false, error: 'Erreur lors de la comparaison des mots de passe' });
+//         return;
+//       }
+
+//       if (bcryptResult) {
+//         res.redirect('/carte.html');
+//       } else {
+//         const errorMessage = 'Mot de passe incorrect';
+//         return res.render('login', { errorMessage });
+//       }
+//     });
+//   });
+// });

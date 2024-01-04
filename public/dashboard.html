@@ -11,7 +11,11 @@
 <body>
     <div class="header">
         <h1>Dashboard</h1>
-        <a href="\">Retour</a>
+        <a class="btn btn-secondary" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+              </svg> Back
+        </a>
     </div>
     <div class="filters row">
         <div class="filter col-md-3 col-sm-6 col-xs-12 text-center py-2 mx-1">
@@ -28,11 +32,11 @@
             <label for="disasterType"><b>Disaster type :</b></label>
             <select class="form-control" id="filter-type" name="disasterType">
                 <option value="Tous">None</option>
-                        <option value="Inondations">Flooding</option>
-                        <option value="Incendies">Fires</option>
-                        <option value="Séismes">Earthquakes</option>
-                        <option value="Tempêtes">Storms</option>
-                        <option value="Eruption volcanique">Volcanic eruption</option>
+                        <option value="Flooding">Flooding</option>
+                        <option value="Fires">Fires</option>
+                        <option value="Earthquakes">Earthquakes</option>
+                        <option value="Storms">Storms</option>
+                        <option value="Volcanic eruption">Volcanic eruption</option>
                         <option value="Tsunami">Tsunami</option>
             </select>
         </div>
