@@ -8,7 +8,10 @@ dotenv.config({ path: '.env.local' });
 
 // Express
 const app = express();
+
 app.use(express.json()); // Middleware
+
+
 
 const upload = multer();
 
@@ -44,14 +47,6 @@ app.get('/', function(req, res) {
 /**
  * Routes
  */
-// app.put('/location', function(req, res) {
-//     console.log("Reçu : PUT /location/" + req.params.id);
-//     console.log("body=" + JSON.stringify(req.body));
-//     res.setHeader('Content-type', 'application/json');
-//     res.json(req.body);
-
-//     console.log(req.body);
-// });
 
 
 // Créez une route pour exécuter la requête SELECT
@@ -66,10 +61,21 @@ app.get('/getPoints', (req, res) => {
   });
 });
 
+// Créez une route pour exécuter la requête SELECT
+app.get('/getUrgence', (req, res) => {
+  db.query('SELECT * FROM urgence', (err, results) => {
+    if (err) {
+      console.error('Erreur lors de l\'exécution de la requête SELECT :', err);
+      res.status(500).json({ error: 'Erreur lors de la requête SELECT' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
 app.post("/upload", upload.none(), (req, res) => {
   const { latitude, longitude, type, desc, ville } = req.body;
-  //const name = req.file.filename;
-  //const imgPath = "Images/" + name
+
 
   //Effectuez l'insertion dans la base de données
   db.query('INSERT INTO point (longitude, latitude, date, type, ville, description) VALUES (?, ?, NOW(), ?, ?, ?)', 
@@ -80,15 +86,27 @@ app.post("/upload", upload.none(), (req, res) => {
       res.status(500).json({ error: err.message });
       return;
     }
+
     res.redirect('/?success=true');
   });
 });
 
-app.post("/uploadUrgence", (req, res) => {
-  const { typeUrgence } = req.body;
-  console.log("urg ", req.body);
-  console.log("urg ", typeUrgence);
-  res.redirect('/?success=true');
+app.post("/uploadUrgence",upload.none(), (req, res) => {
+  const { latitudeU, longitudeU, typeUrgence } = req.body;
+  if(latitudeU == undefined) {
+    res.redirect('/?success=false');
+    return;
+  }
+  db.query('INSERT INTO urgence (longitude, latitude, date, type) VALUES (?, ?, NOW(), ?)', 
+  [longitudeU, latitudeU, typeUrgence], (err, results) => {
+    if (err) {
+      console.error('Erreur lors de l\'insertion en base de données :', err);
+      //res.status(500).json({ error: 'Erreur lors de l\'enregistrement en base de données.' });
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.redirect('/?success=true');
+  });
 })
 
 // Ajoutez cette route pour gérer la suppression des points

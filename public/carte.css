@@ -222,6 +222,19 @@ abbr {
 /* Bouton Urgence */
 .urgenceButton {
     margin-left: auto;
+    border: solid 2px white;
+}
+
+.dashboardButton {
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 3px;
+}
+
+.dashboardButton:hover {
+    background-color: #41586f;
 }
 
 /* Boîte de dialogue modale Utilisation des données */

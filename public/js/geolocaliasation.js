@@ -22,5 +22,6 @@
    {
         document.querySelector('.title').classList.remove("activeCart");
         document.querySelector('.form-container').classList.add("activeCart");
+        document.getElementById("formUrgence").classList.add("activeCart");
         document.querySelector('.header-bar').classList.remove("activeCart");
    }
